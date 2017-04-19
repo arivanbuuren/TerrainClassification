@@ -5,27 +5,28 @@ for num = 1:10
     I = imread(filename);
     [n, d, ~] = size(I);
 
-    grass = [0 200 0];
-    road = [100 100 100];
-    sidewalk = [0 255 255];
-    dirt = [45 80 160];
-    bushes = [32 160 220];
+    grass = 200;
+    road = 100;
+    sidewalk = 255;
+    dirt = 80;
+    bushes = 160;
 
     label = zeros(n, d);
 
     for i = 1:n
         for j = 1:d
-            if all(I(i, j, :) == grass)
+            if (I(i, j, 2) == grass)
                 label(i, j) = 1;
-            elseif all(I(i, j, :) == road)
+            elseif (I(i, j, 2) == road)
                 label(i, j) = 2;
-            elseif all(I(i, j, :) == sidewalk)
+            elseif (I(i, j, 2) == sidewalk)
                 label(i, j) = 3;
-            elseif all(I(i, j, :) == dirt)
+            elseif (I(i, j, 2) == dirt)
                 label(i, j) = 4;
-            elseif all(I(i, j, :) == bushes)
+            elseif (I(i, j, 2) == bushes)
                 label(i, j) = 5;
             else
+                num
                 label(i, j) = 6;
             end
         end
