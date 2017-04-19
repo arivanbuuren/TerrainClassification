@@ -1,6 +1,5 @@
 ytrain = [];
-Xtrain = [];
-for num = 1:10
+for num = 1:25
     filename = strcat('labeledImages/image', int2str(num), '.ppm');
     I = imread(filename);
     [n, d, ~] = size(I);
@@ -32,12 +31,11 @@ for num = 1:10
     end
     label = reshape(label, [n*d, 1]);
     ytrain = [ytrain; label];
-    xtrain = reshape(I, [n*d, 3]);
-    Xtrain = [Xtrain; xtrain];
 end
 
-Xtrain = double(Xtrain);
+%Xtrain = reshape(I, [n*d, 3]);
+ytrain = reshape(label, [n*d, 1]);
 
 %savefilename = strcat('/Users/CandiceTian/Desktop/WinterTerm2/540/project/TerrainClassification/labels/label_image', int2str(num), '.mat');
-save('trainingData', 'Xtrain', 'ytrain');
-%save(savefilename, 'ytrain');
+save('', 'ytrain')
+save(savefilename, 'ytrain');
