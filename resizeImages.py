@@ -16,4 +16,4 @@ def resizeImage(numberOfExamples, imagePath, savePath):
         print i
         
 if __name__ == "__main__":   
-    resizeImage(25, "trainingImages/image", "resizedImages")
+    resizeImage(57, "trainingImages/image", "resizedImages")
