@@ -20,12 +20,12 @@ img2 = img
 segments = np.unique(img[:,:,0], return_counts = True)
 indicesA = np.where(img[:,:,0] == 81) 
 indicesB = np.where(img[:,:,0] == 20) 
-indicesC = np.where(img[:,:,0] == 3)
-indicesD = np.where(img[:,:,0] == 6)
-indicesE = np.where(img[:,:,0] == 54)
-indicesF = np.where(img[:,:,0] == 129)
-indicesG = np.where(img[:,:,0] == 163)
-indicesH = np.where(img[:,:,0] == 173)
+indicesC = np.where(img[:,:,0] == 217)
+indicesD = np.where(img[:,:,0] == 44)
+indicesE = np.where(img[:,:,0] == 85)
+indicesF = np.where(img[:,:,0] == 111)
+indicesG = np.where(img[:,:,0] == 175)
+indicesH = np.where(img[:,:,0] == 24)
 indicesI = np.where(img[:,:,0] == 219)
 indicesJ = np.where(img[:,:,0] == 250)
    
@@ -35,26 +35,27 @@ for i in range(len(indicesA[0])):
     
 for i in range(len(indicesB[0])):
     img2[indicesB[0][i], indicesB[1][i], :] = bushes
+    
 for i in range(len(indicesC[0])):
-    img2[indicesC[0][i], indicesC[1][i], :] = road
+    img2[indicesC[0][i], indicesC[1][i], :] = dirt
     
 for i in range(len(indicesD[0])):
-    img2[indicesD[0][i], indicesD[1][i], :] = road
+    img2[indicesD[0][i], indicesD[1][i], :] = bushes
     
 for i in range(len(indicesE[0])):
-    img2[indicesE[0][i], indicesE[1][i], :] = road
+    img2[indicesE[0][i], indicesE[1][i], :] = bushes
 
 for i in range(len(indicesF[0])):
     img2[indicesF[0][i], indicesF[1][i], :] = road
 
 for i in range(len(indicesG[0])):
-    img2[indicesG[0][i], indicesG[1][i], :] = dirt
+    img2[indicesG[0][i], indicesG[1][i], :] = road
 
 for i in range(len(indicesH[0])):
-    img2[indicesH[0][i], indicesH[1][i], :] = road
+    img2[indicesH[0][i], indicesH[1][i], :] = bushes
 
 for i in range(len(indicesI[0])):
-    img2[indicesI[0][i], indicesI[1][i], :] = road
+    img2[indicesI[0][i], indicesI[1][i], :] = bushes
     
 for i in range(len(indicesJ[0])):
     img2[indicesJ[0][i], indicesJ[1][i], :] = road
