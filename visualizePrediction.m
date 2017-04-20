@@ -1,7 +1,7 @@
 function [ predImage ] = visualizePrediction( yhat )
 %Function to show image segmentation and classification
 grass = [0, 200, 0];
-road = [100, 255, 100];
+road = [100, 100, 100];
 sidewalk = [255, 255, 0];
 dirt = [160,80,45];
 bushes = [220,160,32];
