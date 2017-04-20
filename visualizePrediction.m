@@ -19,7 +19,6 @@ for i = 1:row
                 predImage(i,j,:) = grass;
             case(2) 
                 predImage(i,j,:) = road;
-                fprintf('road\n');
             case(3)
                 predImage(i,j,:) = sidewalk;
             case(4)
@@ -31,6 +30,6 @@ for i = 1:row
         end
     end
 end
-
+predImage = predImage / 255; 
 end
 
