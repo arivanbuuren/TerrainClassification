@@ -30,6 +30,7 @@ for i = 1:row
         end
     end
 end
-predImage = predImage / 255; 
+predImage = predImage / 255;
+imshow(predImage);
 end
 

@@ -39,7 +39,7 @@ for num = 31:40
 end
 
 Xtest = double(Xtest);
-Xtest = rgb2lab(Xtest);
+%Xtest = rgb2lab(Xtest);
 
 %savefilename = strcat('/Users/CandiceTian/Desktop/WinterTerm2/540/project/TerrainClassification/labels/label_image', int2str(num), '.mat');
 save('testingData', 'Xtest', 'ytest');

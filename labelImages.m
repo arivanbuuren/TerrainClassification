@@ -40,7 +40,7 @@ for num = 1:30
 end
 
 Xtrain = double(Xtrain);
-Xtrain = rgb2lab(Xtrain);
+%Xtrain = rgb2lab(Xtrain);
 
 %savefilename = strcat('/Users/CandiceTian/Desktop/WinterTerm2/540/project/TerrainClassification/labels/label_image', int2str(num), '.mat');
 save('trainingData', 'Xtrain', 'ytrain');
