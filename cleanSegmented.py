@@ -13,7 +13,7 @@ bushes = [32,160,220]
 obstacle = [0, 0, 0] 
 
 
-imgNumber = 1
+imgNumber = 59
 imageName = 'clusters/image'+ str(imgNumber)+ '.ppm'
 saveName = 'cleanSegments/image'+ str(imgNumber)+ '.ppm'
 
@@ -30,7 +30,7 @@ def assign_class(x,y, image):
     
     print "You are currently assigning: ", strClass
     clusterColor =  image[y,x,:]
-    clusterIndices = np.where(image[:,:,0] == clusterColor[0])
+    clusterIndices = np.where(image[:,:,:] == clusterColor)
 
     for i in range(len(clusterIndices[0])):
         image[clusterIndices[0][i], clusterIndices[1][i], :] = myClassesList[currClass]
