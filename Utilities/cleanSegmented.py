@@ -14,8 +14,13 @@ tree = [0, 0, 0]
 post = [153, 77, 0]
 
 imgNumber = 60
-imageName = 'clusters/image'+ str(imgNumber)+ '.ppm'
-saveName = 'clusters/backup/image.ppm'
+#<<<<<<< Updated upstream
+#imageName = 'clusters/image'+ str(imgNumber)+ '.ppm'
+#saveName = 'clusters/backup/image.ppm'
+#=======
+imageName = '/Users/CandiceTian/Desktop/WinterTerm2/540/project/segment/segment'+ str(imgNumber)+ '.png'
+saveName = '/Users/CandiceTian/Desktop/WinterTerm2/540/project/segment/clustered'+ str(imgNumber)+ '.png'
+#>>>>>>> Stashed changes
 
 currClass = 1
 myClasses = {'unassigned':0, 'grass':1, 'road':2, 'sidewalk':3, 'dirt':4, 'bushes':5, 'tree':6, 'post':7}
@@ -26,8 +31,10 @@ image = cv2.imread(imageName)
 def onMouseClick(event, x, y, flags, param):
     if event == cv2.EVENT_LBUTTONUP:
         assign_class(x,y, param)
+        print x, y
 
 def assign_class(x,y, img):
+    print x, y
     #Save backup image before changes
     cv2.imwrite(saveName, img)
 
@@ -40,7 +47,7 @@ def assign_class(x,y, img):
     
     #Update color of cluster
     for i in range(len(clusterIndices[0])):
-        img[clusterIndices[0][i], clusterIndices[1][i], :] = myClassesList[currClass]
+        img[clusterIndices[i][0], clusterIndices[i][1], :] = myClassesList[currClass]
     
     #Save modified image
     cv2.imwrite(imageName, img)
