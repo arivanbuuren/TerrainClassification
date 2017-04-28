@@ -1,6 +1,9 @@
 close all;
 clear;
 
+getTrainingData(0.5, 1, 75);
+getTestingData(0.5, 76, 83);
+
 load 'trainingData.mat'
 load 'testingData.mat'
 
