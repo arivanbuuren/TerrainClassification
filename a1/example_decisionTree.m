@@ -1,7 +1,16 @@
 % Load X and y variable
-load trainingData.mat
-load testingData.mat
-[n,d] = size(Xtrain);%
+load 'Data.mat'
+
+num_train = 75;
+num_examples = 83;
+
+sizeImage = 120*160;
+Xtrain = X(1:sizeImage*num_train, :);
+ytrain = y(1:sizeImage*num_train);
+Xtest = X(sizeImage*num_train+1:sizeImage*num_examples, :);
+ytest = y(sizeImage*num_train+1:sizeImage*num_examples);
+
+[n,d] = size(Xtrain);
 
 %% Fit decision tree and compute error
 minErr = inf;
@@ -45,9 +54,3 @@ model = decisionTreeInfoGain(Xtrain, ytrain, bestDepth);
 yhat = model.predict(model, Xtest);
 testError = sum(yhat ~= ytest)/sizeTest;
 fprintf('Test error is %.2f\n', testError);
-
-% Visualization of results
-figure(1);
-testI1 = visualizePrediction(yhat(1:120*160));
-figure(2);
-testI_original = imshow('image31.ppm');
