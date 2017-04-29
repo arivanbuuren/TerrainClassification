@@ -17,4 +17,4 @@ if __name__ == "__main__":
     yhat = np.argmax(pyx, axis=1)
     yhat = np.reshape(yhat, (yhat.shape[0],1))
     print yhat.shape
-    scipy.io.savemat('prediction.mat', {'yhat' : yhat}, {'pyx' : pyx})
+    scipy.io.savemat('prediction.mat', {'yhat' : yhat, 'pyx' : pyx})
