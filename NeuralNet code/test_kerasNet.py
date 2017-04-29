@@ -12,8 +12,9 @@ if __name__ == "__main__":
 
     #Load model
     model = load_model('myKerasNet.h5')
-    yhat = model.predict(xValid)
-    yhat = np.argmax(yhat, axis=1)
+    pyx = model.predict(xValid)
+
+    yhat = np.argmax(pyx, axis=1)
     yhat = np.reshape(yhat, (yhat.shape[0],1))
     print yhat.shape
-    scipy.io.savemat('prediction.mat', {'yhat' : yhat})
+    scipy.io.savemat('prediction.mat', {'yhat' : yhat}, {'pyx' : pyx})
