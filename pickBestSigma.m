@@ -1,9 +1,21 @@
+nSplits = 3;
 minErr = inf;
-nSplits = 4;
+results = zeros(2, 50);
+count = 1;
+num_train = 60;
+num_examples = 83;
 
 for sigma = 0.1:0.1:5
-    getTrainingData(sigma, 11, 50);
-    load 'trainingData.mat';
+
+    addLabels(0.5, 1, 83);
+    load 'Data.mat'
+    
+    sizeImage = 120*160;
+    Xtrain = X(1:sizeImage*num_train, :);
+    ytrain = y(1:sizeImage*num_train);
+    Xtest = X(sizeImage*num_train+1:sizeImage*num_examples, :);
+    ytest = y(sizeImage*num_train+1:sizeImage*num_examples);
+    
     [n, d] = size(Xtrain);
     
     validError = 0;
@@ -32,13 +44,18 @@ for sigma = 0.1:0.1:5
     end
     
     validError = validError/nSplits;
-    fprintf('Accuracy with sigma = %.2f is %.2f', sigma, 1-validError);
+    fprintf('Accuracy with sigma = %.2f is %.2f\n', sigma, 1-validError);
+    results(1, count) = sigma;
+    results(2, count) = 1 - validError;
     
     % Keep track of the lowest validation error
-    if validError < minError
+    if validError < minErr
         minErr = validError;
         bestSigma = sigma;
+        bestModel = model;
     end
+    
+    count = count + 1;
 
 end
 
