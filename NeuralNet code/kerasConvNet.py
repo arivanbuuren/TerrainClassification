@@ -11,7 +11,7 @@ class kerasNet:
         self.validationData = scipy.io.loadmat('../testingData.mat')
 
     def train(self):
-        print "Training neural net keras"
+        print "Training convolutional neural network using keras"
 
         #Get training examples
         xTrain = self.trainingData['Xtrain']
