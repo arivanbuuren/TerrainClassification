@@ -29,4 +29,4 @@ if __name__ == "__main__":
     yhat_test = np.reshape(yhat_test, (yhat_test.shape[0],1))
 
     #Save probabilities and predictions
-    scipy.io.savemat('prediction.mat', {'yhat_train' : yhat_train, 'pyx_train' : pyx_train[:,1:8], 'yhat_test' : yhat_test, 'pyx_test' : pyx_test[:,1:8]})
+    scipy.io.savemat('prediction.mat', {'yhat_train_NN' : yhat_train, 'pyx_train_NN' : pyx_train[:,1:8], 'yhat_test_NN' : yhat_test, 'pyx_test_NN' : pyx_test[:,1:8]})
