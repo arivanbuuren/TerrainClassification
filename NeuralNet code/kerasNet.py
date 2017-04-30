@@ -36,12 +36,16 @@ class kerasNet:
         self.model.add(Dropout(0.5))
         self.model.add(Dense(64, activation='tanh'))
         self.model.add(Dropout(0.5))
+        self.model.add(Dense(64, activation='tanh'))
+        self.model.add(Dropout(0.5))
+        self.model.add(Dense(64, activation='tanh'))
+        self.model.add(Dropout(0.5))
         self.model.add(Dense(8, activation='softmax'))
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
         #Fit model
         one_hot_labels = to_categorical(yTrain, num_classes=8)
-        self.model.fit(xTrain, one_hot_labels, epochs=20, batch_size=120*160)
+        self.model.fit(xTrain, one_hot_labels, epochs=50, batch_size=120*160)
 
         #Save model
         self.model.save('myKerasNet.h5')
