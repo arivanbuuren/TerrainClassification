@@ -10,9 +10,9 @@ def resizeImage(start, end, imagePath, savePath):
         imageName = imagePath + str(imNumber) + '.JPG'
         img = cv2.imread(imageName)
         img2 = cv2.resize(img, (IM_WIDTH, IM_HEIGHT), interpolation = cv2.INTER_AREA)
-        saveName = savePath + '/image' + str(imNumber) + '.png'
+        saveName = savePath + '/image' + str(imNumber) + '.ppm'
         cv2.imwrite(saveName, img2)
         print imNumber
         
 if __name__ == "__main__":   
-    resizeImage(84, 85, "crops/image", "resizedCrops")
+    resizeImage(84, 101, "crops/image", "resizedCrops")
