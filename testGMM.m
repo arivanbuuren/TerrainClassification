@@ -1,20 +1,24 @@
+%This program fits a Gaussian mixture model to make pixel-wise
+%classification
+
 close all;
 clear;
 
-%addLabels(0.5, 1, 83);
-
+%Load data
 load 'trainingData.mat'
 load 'testingData.mat'
 
-%sizeImage = 120*160;
-%Xtrain = X(1:sizeImage*75, :);
-%ytrain = y(1:sizeImage*75);
-%Xtest = X(sizeImage*75+1:sizeImage*83, :);
-%ytest = y(sizeImage*75+1:sizeImage*83);
-
+% Fit GMM on train data and compute accuracy 
 
 model = generativeGaussian(Xtrain, ytrain);
-yhat = model.predict(model, Xtest);
-fprintf('Gaussian Gen. Model. accuracy is %.2f\n', mean(yhat == ytest));
+[yhat_train, pyx_train] = model.predict(model,Xtrain);
+fprintf('Gaussian Gen. Model. training accuracy is %.2f\n', mean(yhat_train == ytrain));
 
-save('predictionGMM.mat', 'yhat')
+% Make predictions on test data
+[yhat_test, pyx_test] = model.predict(model, Xtest);
+fprintf('Gaussian Gen. Model. testing accuracy is %.2f\n', mean(yhat_test == ytest));
+
+%Save predictions and probabilities on training data
+pyx_train = pyx_train(:,1:7);
+pyx_test=pyx_test(:,1:7);
+save('predictionGMM.mat', 'yhat_train', 'pyx_train', 'yhat_test', 'pyx_test');

@@ -40,7 +40,7 @@ model.theta = theta;
 model.predict = @(model, Xtest) predict(model, Xtest);
 end
 
-function yhat = predict(model, X )
+function [yhat, pyx] = predict(model, X )
  [n,d] = size(X);
  sigma = model.sigma;
  mu = model.mu;
@@ -48,6 +48,7 @@ function yhat = predict(model, X )
  
  [k, ~] = size(model.theta);
  yhat = zeros(n,1);
+ pyx = zeros(n,k);
  for i=1:n
      xi = X(i,:)';
     for c = 1:k
@@ -57,5 +58,6 @@ function yhat = predict(model, X )
         pyc(c) = px(c) * theta_c; 
     end
     [~, yhat(i)] = max(pyc);
+    pyx(i,:) = pyc / sum(pyc);
  end
 end
