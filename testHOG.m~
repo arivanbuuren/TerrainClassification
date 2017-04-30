@@ -1,0 +1,4 @@
+filename = 'originalImages/image1.png';
+I = imread(filename);
+[features, vis] = extractHOGFeatures(I, 'CellSize', [6]);
+plot(vis);
