@@ -13,7 +13,7 @@ bushes = [32,160,220]
 tree = [0, 0, 0] 
 post = [153, 77, 0]
 
-imgNumber = 58
+imgNumber = 81
 imageName = 'labeledImages/image'+ str(imgNumber)+ '.png'
 saveName = 'labeledImages/backup/image.png'
 
