@@ -41,7 +41,7 @@ class kerasNet:
 
         #Fit model
         one_hot_labels = to_categorical(yTrain, num_classes=8)
-        self.model.fit(xTrain, one_hot_labels, epochs=10, batch_size=120*160)
+        self.model.fit(xTrain, one_hot_labels, epochs=20, batch_size=120*160)
 
         #Save model
         self.model.save('myKerasNet.h5')
