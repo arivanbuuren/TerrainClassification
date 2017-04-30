@@ -1,12 +1,13 @@
-% Load X and y variable
-load trainingData.mat
-load testingData.mat
+load 'trainingData.mat'
+load 'testingData.mat'
+
 [n,d] = size(Xtrain);
 
 %% Fit decision tree and compute error
 minErr = inf;
 nSplits = 3;
-for depth = 1:10
+%for depth = 12:20
+depth = 10;
     validError = 0;
     for split = 1:nSplits
         
@@ -21,11 +22,11 @@ for depth = 1:10
         % Train on the training set
         model = decisionTreeInfoGain(Xtrain(trainNdx, :), ytrain(trainNdx), depth);
         ypredict = model.predict(model, Xtrain(trainNdx, :));
-        trainError = sum(ypredict ~= ytrain(trainNdx))/sizeTrain
+        trainError = sum(ypredict ~= ytrain(trainNdx))/sizeTrain;
         
         % Compute the error on the validation set
         yhat = model.predict(model, Xtrain(testNdx, :));
-        validError = validError + sum(yhat ~= ytrain(testNdx))/sizeValid
+        validError = validError + sum(yhat ~= ytrain(testNdx))/sizeValid;
     end
     validError = validError/nSplits;
     fprintf('Error with depth = %d is %.2f\n', depth, validError);
@@ -36,16 +37,12 @@ for depth = 1:10
         bestDepth = depth;
         bestYhat = yhat;
     end
-end
+%end
     
 fprintf('Best tree depth is %d', bestDepth);
 
+[sizeTest, ~] = size(Xtest);
 model = decisionTreeInfoGain(Xtrain, ytrain, bestDepth);
 yhat = model.predict(model, Xtest);
-fprintf('Testing error is %)
-
-% Visualization of results
-figure(1);
-testI1 = visualizePrediction(bestYhat(1:120*160));
-figure(2);
-testI_original = imshow('image31.ppm');
+testError = sum(yhat ~= ytest)/sizeTest;
+fprintf('Test error is %.2f\n', testError);
