@@ -1,6 +1,7 @@
 clear;
 % load('yhat.mat');
 load('NeuralNet code/prediction.mat');
+yhat = yhat_test_NN;
 im_w = 120;
 im_h = 160;
 numImages =  length(yhat) / (im_w * im_h) ; 

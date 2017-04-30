@@ -37,6 +37,7 @@ function getTestingData(sigma, startNum, endNum)
                     label(i, j) = 7;
                 else
                     label(i, j) = 8;
+                    num
                 end
             end
         end
