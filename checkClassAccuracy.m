@@ -13,6 +13,9 @@ load 'prediction_DT/ytrain_prediction.mat'
 %ytrain_prediction = yhat_train_GMM;
 %ytrain_prediction = ytrain_predictGMM;
 load 'NeuralNet code/prediction.mat'
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 load 'trainingData.mat'
 ytrain_prediction = yhat_train_NN;
