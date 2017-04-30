@@ -34,7 +34,7 @@ class kerasNet:
         self.model = Sequential()
         self.model.add(Dense(64, input_shape=(nDimensions,), activation='relu', use_bias=True))
         self.model.add(Dropout(0.5))
-        self.model.add(Dense(64, activation='relu'))
+        self.model.add(Dense(64, activation='tanh'))
         self.model.add(Dropout(0.5))
         self.model.add(Dense(8, activation='softmax'))
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
