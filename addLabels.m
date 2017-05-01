@@ -1,4 +1,5 @@
 function addLabels(sigma, startPoint, endPoint)
+    load('estimated_derivatives.mat')
     y = [];
     X = [];
     number = endPoint-startPoint+1;
@@ -6,6 +7,11 @@ function addLabels(sigma, startPoint, endPoint)
     for num = 1:number
         filename = strcat('labeledImages/image', int2str(S(num)), '.png');
         filename1 = strcat('originalImages/image', int2str(S(num)), '.png');
+        cIx = squeeze(Ix(S(num),:,:));
+        cIy = squeeze(Iy(S(num),:,:));
+        cIx = reshape(cIx, [120*160, 1]);
+        cIy = reshape(cIy, [120*160,1]);
+
         I = imread(filename);
         I1 = imread(filename1);
         [n, d, ~] = size(I);
@@ -44,15 +50,18 @@ function addLabels(sigma, startPoint, endPoint)
         label = reshape(label, [n*d, 1]);
         y = [y; label];
         I2 = reshape(I1, [n*d, 3]);
-        Ix = horizontalDerivative(I1, sigma);
-        Ix = reshape(Ix, [n*d, 1]);
-        Ix = Ix * 10000;
-        X = [X; [I2 Ix]];
+%         Ix = horizontalDerivative(I1, sigma);
+%         Ix = reshape(Ix, [n*d, 1]);
+%         Ix = Ix * 10000;
+%         size(cIx)
+%         cIx = reshape(cIx, [120*160, 1]);
+%         cIy = reshape(cIy, [n*d, 1]);
+        X = [X; [I2 cIx cIy]];
     end
 
     X = double(X);
-
-    save('Data', 'X', 'y');
+% 
+    save('Data2', 'X', 'y');
 
 end
 

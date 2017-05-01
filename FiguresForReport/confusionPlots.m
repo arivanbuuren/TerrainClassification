@@ -1,11 +1,11 @@
 clear;clc;
-load('../Data&Results_withoutIx/testingData.mat')
-load('../Data&Results_withoutIx/trainingData.mat')
+load('../BestDataset/testingData.mat')
+load('../BestDataset/trainingData.mat')
 
-load('../Data&Results_withoutIx/predictionGMM.mat')
-load('../Data&Results_withoutIx/prediction_woIx.mat')
-load('../Data&Results_withoutIx/predictionDT.mat')
-load('../Data&Results_withoutIx/averagePredictions.mat')
+load('../GMMCode/predictionGMM.mat')
+load('../NeuralNet code/prediction_woIx.mat')
+load('../DTcode/predictionDT.mat')
+load('../ModelAveraging/averagePredictions.mat')
 yhat_test_DT = yhat;
 
 one_hot_labels = zeros(length(ytest),7);
