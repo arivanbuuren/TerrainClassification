@@ -5,8 +5,8 @@ close all;
 clear;
 
 %Load data
-load 'trainingData.mat'
-load 'testingData.mat'
+load 'Data&Results_withoutIx/trainingData.mat'
+load 'Data&Results_withoutIx/testingData.mat'
 
 % Fit GMM on train data and compute accuracy 
 
@@ -21,4 +21,4 @@ fprintf('Gaussian Gen. Model. testing accuracy is %.2f\n', mean(yhat_test_GMM ==
 %Save predictions and probabilities on training data
 pyx_train_GMM = pyx_train_GMM(:,1:7);
 pyx_test_GMM = pyx_test_GMM(:,1:7);
-save('predictionGMM.mat', 'yhat_train_GMM', 'pyx_train_GMM', 'yhat_test_GMM', 'pyx_test_GMM');
+save('Data&Results_withoutIx/predictionGMM.mat', 'yhat_train_GMM', 'pyx_train_GMM', 'yhat_test_GMM', 'pyx_test_GMM');

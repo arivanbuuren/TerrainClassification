@@ -1,5 +1,5 @@
-load 'trainingData.mat'
-load 'testingData.mat'
+load 'Data&Results_withoutIx/trainingData.mat'
+load 'Data&Results_withoutIx/testingData.mat'
 
 [n,d] = size(Xtrain);
 
