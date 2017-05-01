@@ -45,10 +45,10 @@ class kerasNet:
 
         #Fit model
         one_hot_labels = to_categorical(yTrain, num_classes=8)
-        self.model.fit(xTrain, one_hot_labels, epochs=50, batch_size=120*160)
+        self.model.fit(xTrain, one_hot_labels, epochs=100, batch_size=120*160)
 
         #Save model
-        self.model.save('myKerasNet.h5')
+        self.model.save('myKerasNet2.h5')
 
         #Get model accuracy
         one_hot_validation = to_categorical(yValid, num_classes=8)

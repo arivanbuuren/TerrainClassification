@@ -41,14 +41,14 @@ class kerasNet:
         self.model = Sequential()
         self.model.add(Convolution2D(32, (3, 3), input_shape=(160,120,4), activation='relu', use_bias=True))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
-        self.model.add(Flatten())
+        # self.model.add(Flatten())
         self.model.add(Dense(32,activation='relu'))
-        self.model.add(Dense(8, activation='softmax'))
+        self.model.add(Dense(8))
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
         #Fit model
        # one_hot_labels = to_categorical(yTrain, num_classes=8)
-        self.model.fit(xTrain, yTrain, epochs=100, batch_size=128)
+        # self.model.fit(xTrain, yTrain, epochs=100, batch_size=128)
 
         # #Save model
         # self.model.save('myKerasConvNet.h5')
