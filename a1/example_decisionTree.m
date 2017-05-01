@@ -6,8 +6,7 @@ load 'testingData.mat'
 %% Fit decision tree and compute error
 minErr = inf;
 nSplits = 3;
-%for depth = 12:20
-bestDepth = 10;
+for depth = 1:15
     validError = 0;
     for split = 1:nSplits
         
@@ -29,7 +28,7 @@ bestDepth = 10;
         validError = validError + sum(yhat ~= ytrain(testNdx))/sizeValid;
     end
     validError = validError/nSplits;
-    fprintf('Error with depth = %d is %.2f\n', depth, validError);
+    fprintf('Accuracy with depth = %d is %.4f\n', depth, 1-validError);
     
     % Keep track of the lowest validation error
     if validError < minErr
@@ -37,11 +36,11 @@ bestDepth = 10;
         bestDepth = depth;
         bestYhat = yhat;
     end
-%end
+end
     
 fprintf('Best tree depth is %d', bestDepth);
 
 model = decisionTreeInfoGain(Xtrain, ytrain, bestDepth);
 yhat = model.predict(model, Xtest);
-testError = mean(yhat ~= ytest);
-fprintf('Test error is %.2f\n', testError);
+testAcc = mean(yhat == ytest);
+fprintf('Test accuracy is %.4f\n', testAcc);
