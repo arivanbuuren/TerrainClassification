@@ -1,13 +1,6 @@
 clear;
-% load('yhat.mat');
-% load('Data&Results_withoutIx/prediction_woIx.mat');
-% load('Data&Results_withoutIx/testingData.mat');
-% load('predictionDT/yhat.mat')
-% load('Data&Results_withoutIx/predictionGMM.mat');
-% load('ignoreThis/testingData.mat')
-% load('ignoreThis/predictionGMMwo.mat');
-load('ignoreThis/prediction_IxIy.mat');
-yhat = yhat_test_NN;
+load('ModelAveraging/averagePredictionswo.mat');
+yhat = yavg;
 im_w = 120;
 im_h = 160;
 numImages =  length(yhat) / (im_w * im_h) ; 
