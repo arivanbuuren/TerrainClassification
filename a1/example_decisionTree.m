@@ -1,5 +1,8 @@
-load 'Data&Results_withoutIx/trainingData.mat'
-load 'Data&Results_withoutIx/testingData.mat'
+load 'ignoreThis/trainingData.mat'
+load 'ignoreThis/testingData.mat'
+
+Xtrain = Xtrain(:, 1:3);
+Xtest = Xtest(:, 1:3);
 
 [n,d] = size(Xtrain);
 
@@ -38,9 +41,14 @@ for depth = 1:15
     end
 end
     
-fprintf('Best tree depth is %d', bestDepth);
+fprintf('Best tree depth is %d\n', bestDepth);
 
 model = decisionTreeInfoGain(Xtrain, ytrain, bestDepth);
+yhat_train_DT = model.predict(model, Xtrain);
+tStart = tic;
 yhat = model.predict(model, Xtest);
+tElapsed = toc(tStart); 
+predTime = tElapsed/25;
 testAcc = mean(yhat == ytest);
 fprintf('Test accuracy is %.4f\n', testAcc);
+save('predictionDT.mat', 'yhat', 'yhat_train_DT', 'predTime');
