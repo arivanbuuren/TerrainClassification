@@ -1,10 +1,20 @@
 clc;clear;
 num_classes = 7;
 %Load train data
-load('trainingData.mat');
+load('Data&Results_withoutIx/trainingData.mat');
 %Load prediction data for NN
-load('NeuralNet code/prediction.mat')
+load('Data&Results_withoutIx/prediction_woIx.mat')
 
+%Load prediction data for DT
+load('Data&Results_withoutIx/predictionDT')
+
+%Load prediction data for GMM
+load('Data&Results_withoutIx/predictionGMM.mat')
+
+%Load test data
+load('Data&Results_withoutIx/testingData.mat')
+
+%Conditionals NN
 conditionals_NN = zeros(num_classes);
 for true_k = 1:7
     ind_true_k = find(ytrain == true_k); 
@@ -13,9 +23,8 @@ for true_k = 1:7
     end
 end 
 
-%Load prediction data for GMM
-load('predictionGMM.mat')
 
+%Conditionals GMM
 conditionals_GMM = zeros(num_classes);
 for true_k = 1:7
     ind_true_k = find(ytrain == true_k); 
@@ -24,9 +33,7 @@ for true_k = 1:7
     end
 end 
 
-%Load prediction data for GMM
-load('predictionDT/ytrain_predict.mat')
-yhat_train_DT = ytrain_predict;
+%Conditionals DT
 conditionals_DT = zeros(num_classes);
 for true_k = 1:7
     ind_true_k = find(ytrain == true_k); 
@@ -36,8 +43,6 @@ for true_k = 1:7
 end 
 
 %% Average predictions
-load('testingData.mat')
-load('predictionDT/yhat.mat')
 yhat_test_DT = yhat;
 num_of_predictions = length(ytest);
 yavg = zeros(num_of_predictions,1);
@@ -64,3 +69,4 @@ fprintf('Accuracy of DT:  %.4f\n', mean(yhat_test_DT == ytest));
 fprintf('Accuracy of Avg: %.4f\n', mean(yavg == ytest));
 fprintf('Accuracy of Bse: %.4f\n', mean(yavg_base == ytest));
 
+save('Data&Results_withoutIx/averagePredictions.mat', 'yavg', 'yavg_base');
