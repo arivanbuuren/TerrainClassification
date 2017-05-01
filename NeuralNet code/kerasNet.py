@@ -7,8 +7,8 @@ import scipy.io
 
 class kerasNet:
     def __init__(self):
-        self.trainingData = scipy.io.loadmat('../trainingData.mat')
-        self.validationData = scipy.io.loadmat('../testingData.mat')
+        self.trainingData = scipy.io.loadmat('../ignoreThis/trainingData.mat')
+        self.validationData = scipy.io.loadmat('../ignoreThis/testingData.mat')
 
     def train(self):
         print "Training neural net keras"
@@ -28,8 +28,10 @@ class kerasNet:
             if yValid[i] == 8: 
                 yValid[i] = 0
 
+        xTrain = xTrain[:,0:3]
+        xValid = xValid[:,0:3]
         nDimensions = xTrain.shape[1]
-        
+        print "training with ", nDimensions, " features"
         # #Setup network architecture
         self.model = Sequential()
         self.model.add(Dense(64, input_shape=(nDimensions,), activation='relu', use_bias=True))
@@ -45,10 +47,10 @@ class kerasNet:
 
         #Fit model
         one_hot_labels = to_categorical(yTrain, num_classes=8)
-        self.model.fit(xTrain, one_hot_labels, epochs=100, batch_size=120*160)
+        self.model.fit(xTrain, one_hot_labels, epochs=50, batch_size=120*160)
 
         #Save model
-        self.model.save('myKerasNet2.h5')
+        self.model.save('myKerasNet4.h5')
 
         #Get model accuracy
         one_hot_validation = to_categorical(yValid, num_classes=8)
