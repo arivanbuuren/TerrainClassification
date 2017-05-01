@@ -1,9 +1,9 @@
 %Script to run problem 2.2 Assignment 2 Machine Learning Decision Forest 
 %Load X and y variable
-% clear
-% clc
-load('../trainingData.mat');
-load('../testingData.mat');
+clear
+clc
+load('../Data&Results_withIx/trainingData.mat');
+load('../Data&Results_withIx/testingData.mat');
 X = Xtrain;
 y = ytrain;
 [n,d] = size(X);
