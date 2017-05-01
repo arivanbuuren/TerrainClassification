@@ -1,13 +1,13 @@
-load 'trainingData.mat';
-
+addpath(genpath('Data&Results_withoutIx'));
+load 'Data&Results_withoutIx/trainingData.mat';
 load 'predictionGMM.mat';
 ypredict_GMM = yhat_train_GMM;
 fprintf('Accuracy for GMM is %.4f\n', mean(ytrain == ypredict_GMM));
-load 'prediction.mat';
+load 'prediction_woIx.mat';
 ypredict_NN = yhat_train_NN;
 fprintf('Accuracy for NN is %.4f\n', mean(ytrain == ypredict_NN));
-load 'ytrain_prediction.mat';
-ypredict_DT = ytrain_prediction;
+load 'predictionDT.mat';
+ypredict_DT = yhat_train_DT;
 fprintf('Accuracy for Decision Tree is %.4f\n', mean(ytrain == ypredict_DT));
 
 ypredict = [ypredict_GMM ypredict_NN ypredict_DT];
@@ -18,6 +18,7 @@ ypredict = [ypredict_GMM ypredict_NN ypredict_DT];
 %fprintf('Accuracy for Averaging with Decision Tree is %.4f\n', mean(ytrain == yhat));
 
 Xtrain = ypredict;
+[n, d] = size(Xtrain);
 
 %% Fit decision tree and compute error
 minErr = inf;
