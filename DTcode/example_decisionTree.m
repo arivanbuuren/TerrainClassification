@@ -2,8 +2,8 @@ clear;clc
 load '../BestDataset/trainingData.mat'
 load '../BestDataset/testingData.mat'
 
-Xtrain = Xtrain(:, 1:3);
-Xtest = Xtest(:, 1:3);
+% Xtrain = Xtrain(:, 1:3);
+% Xtest = Xtest(:, 1:3);
 
 [n,d] = size(Xtrain);
 
@@ -44,7 +44,7 @@ Xtest = Xtest(:, 1:3);
     
 %fprintf('Best tree depth is %d\n', bestDepth);
 %Best depth found using Cross Validation
-bestDepth = 9;
+bestDepth = 10;
 
 model = decisionTreeInfoGain(Xtrain, ytrain, bestDepth);
 yhat_train_DT = model.predict(model, Xtrain);
@@ -54,6 +54,6 @@ tElapsed = toc(tStart);
 predTimeDT = tElapsed/25;
 testAcc = mean(yhat == ytest);
 fprintf('Test accuracy is %.4f\n', testAcc);
-fprintf('Average prediction time for one image is: %.2f\n', predTimeDT);
+fprintf('Average prediction time for one image is: %.2f sec\n', predTimeDT);
 yhat_test_DT = yhat;
-save('predictionDTwo.mat', 'yhat_test_DT', 'yhat_train_DT', 'predTimeDT');
+save('predictionDTwith.mat', 'yhat_test_DT', 'yhat_train_DT', 'predTimeDT');
