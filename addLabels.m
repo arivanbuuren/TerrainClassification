@@ -1,5 +1,5 @@
 function addLabels(sigma, startPoint, endPoint)
-    load('estimated_derivatives.mat')
+    load('Utilities/estimated_derivatives.mat')
     y = [];
     X = [];
     number = endPoint-startPoint+1;
@@ -44,6 +44,7 @@ function addLabels(sigma, startPoint, endPoint)
                     label(i, j) = 7;
                 else
                     label(i, j) = 8;
+
                 end
             end
         end
@@ -60,7 +61,7 @@ function addLabels(sigma, startPoint, endPoint)
     end
 
     X = double(X);
-% 
+
     save('Data2', 'X', 'y');
 
 end

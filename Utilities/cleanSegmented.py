@@ -13,7 +13,7 @@ bushes = [32,160,220]
 tree = [0, 0, 0] 
 post = [153, 77, 0]
 
-imgNumber = 100
+imgNumber = 81
 imageName = 'clusters/image'+ str(imgNumber)+ '.png'
 saveName = 'clusters/backup/image.png'
 
@@ -38,8 +38,8 @@ def assign_class(x,y, img):
     print "You are currently assigning: ", strClass
     #Obtain color of clicked pixel and find all pixels with the same value
     clusterColor =  img[y,x,:]
-    clusterIndices = np.where(img[:,:,2] == clusterColor[2])
-    
+    clusterIndices = np.where(img[:,:,1] == clusterColor[1])
+
     #Update color of cluster
     for i in range(len(clusterIndices[0])):
         img[clusterIndices[0][i], clusterIndices[1][i], :] = myClassesList[currClass]

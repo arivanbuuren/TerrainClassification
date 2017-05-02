@@ -2,51 +2,50 @@ clear;clc;
 load('../BestDataset/testingData.mat')
 load('../BestDataset/trainingData.mat')
 
-load('../GMMCode/predictionGMM.mat')
-load('../NeuralNet code/prediction_woIx.mat')
-load('../DTcode/predictionDT.mat')
-load('../ModelAveraging/averagePredictions.mat')
-yhat_test_DT = yhat;
+load('../GMMCode/predictionGMMwith.mat')
+load('../NeuralNet code/prediction_with_NN.mat')
+load('../DTcode/predictionDTwith.mat')
+load('../RandomForest/predictionRFwith.mat')
+% load('../ModelAveraging/averagePredictions.mat')
+%Remove Ix and Iy from training data
 
-one_hot_labels = zeros(length(ytest),7);
-GMM_hot_labels = zeros(length(ytest),7);
-NN_hot_labels = zeros(length(ytest),7);
-DT_hot_labels = zeros(length(ytest),7);
-avg_hot_labels = zeros(length(ytest),7);
-base_avg_hot_labels = zeros(length(ytest),7);
-for i = 1:length(ytest)
+
+[t,~] = size(Xtest);
+num_classes = 7;
+y_true = zeros(num_classes, t);
+y_GMM = zeros(num_classes, t);
+y_NN = zeros(num_classes, t);
+y_DT = zeros(num_classes, t);
+y_RF = zeros(num_classes, t);
+% avg_hot_labels = zeros(length(ytest),7);
+% base_avg_hot_labels = zeros(length(ytest),7);
+for i = 1:t
+   %Assign missclassifications to class 1
    if(ytest(i) == 8)
        ytest(i) = 1;
    end
-   one_hot_labels(i,ytest(i)) = 1;
-   GMM_hot_labels(i,yhat_test_GMM(i)) = 1;
-   NN_hot_labels(i,yhat_test_NN(i)) = 1;
-   DT_hot_labels(i,yhat_test_DT(i)) = 1;
-   avg_hot_labels(i,yavg(i)) = 1;
-   base_avg_hot_labels(i,yavg_base(i)) = 1;
-  
+   
+   y_true(ytest(i), i) = 1;
+   y_GMM(yhat_test_GMM(i), i) = 1;
+   y_NN(yhat_test_NN(i), i) = 1;
+   y_DT(yhat_test_DT(i), i) = 1;
+   y_RF(yhat_test_RF(i), i) = 1;
+%    avg_hot_labels(i,yavg(i)) = 1;
+%    base_avg_hot_labels(i,yavg_base(i)) = 1;
 end
-t = one_hot_labels';
-y_GMM = GMM_hot_labels';
-y_NN = NN_hot_labels';
-y_DT = DT_hot_labels';
-y_avg = avg_hot_labels';
-y_base = base_avg_hot_labels';
 
 figure(1)
-plotconfusion(t,y_GMM,'GMM')
+plotconfusion(y_true,y_GMM,'GMM')
 
 figure(2)
-plotconfusion(t,y_NN,'Neural Net')
+plotconfusion(y_true,y_NN,'Neural Net')
 
 figure(3)
-plotconfusion(t,y_DT,'Decision Tree')
+plotconfusion(y_true,y_DT,'Decision Tree')
 
 figure(4)
-plotconfusion(t,y_avg,'Model averaging')
+plotconfusion(y_true, y_RF, 'Random Forest')
 
-figure(5)
-plotconfusion(t,y_base,'Model averaging using mode')
 % In case we want confusion matrices for training data
 % NN_hot_train = zeros(length(ytrain), 7);
 % train_hot_labels = zeros(length(ytrain),7);
