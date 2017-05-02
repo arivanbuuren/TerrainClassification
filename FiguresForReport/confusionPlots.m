@@ -37,14 +37,14 @@ end
 figure(1)
 plotconfusion(y_true,y_GMM,'GMM')
 
-figure(2)
-plotconfusion(y_true,y_NN,'Neural Net')
-
-figure(3)
-plotconfusion(y_true,y_DT,'Decision Tree')
-
-figure(4)
-plotconfusion(y_true, y_RF, 'Random Forest')
+% figure(2)
+% plotconfusion(y_true,y_NN,'Neural Net')
+% 
+% figure(3)
+% plotconfusion(y_true,y_DT,'Decision Tree')
+% 
+% figure(4)
+% plotconfusion(y_true, y_RF, 'Random Forest')
 
 % In case we want confusion matrices for training data
 % NN_hot_train = zeros(length(ytrain), 7);
@@ -57,4 +57,5 @@ plotconfusion(y_true, y_RF, 'Random Forest')
 %    NN_hot_train(i,yhat_train_NN(i)) = 1;
 % end
 % 
-
+set(gca,'xticklabel',{'Grass' 'Road' 'Edge' 'Soil' 'Bushes' 'Tree' 'Post' ' '})
+set(gca,'yticklabel',{'Grass' 'Road' 'Edge' 'Soil' 'Bushes' 'Tree' 'Post' ' '})

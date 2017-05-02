@@ -2,10 +2,10 @@ clear;clc;
 load('../BestDataset/testingData.mat')
 load('../BestDataset/trainingData.mat')
 
-load('../GMMCode/predictionGMMwith.mat')
-load('../NeuralNet code/prediction_with_NN.mat')
-load('../DTcode/predictionDTwith.mat')
-load('../RandomForest/predictionRFwith.mat')
+load('../GMMCode/predictionGMMwo.mat')
+load('../NeuralNet code/prediction_wo_NN.mat')
+load('../DTcode/predictionDTwo.mat')
+load('../RandomForest/predictionRFwo.mat')
 % load('../ModelAveraging/averagePredictions.mat')
 %Remove Ix and Iy from training data
 
@@ -35,10 +35,10 @@ for i = 1:t
 end
 
 figure(1)
-plotroc( y_true, y_NN, 'Neural Net');
+% plotroc( y_true, y_NN, 'Neural Net');
 % plotroc( y_true, y_GMM, 'GMM');
 % plotroc( y_true, y_RF, 'Random Forest');
-% plotroc( y_true, y_DT, 'Decision Tree Net');
+plotroc( y_true, y_DT, 'Decision Tree Net');
 
 axisdata = get(gca,'userdata')
 legend('Location', 'southeast')
