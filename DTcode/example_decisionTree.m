@@ -54,6 +54,6 @@ tElapsed = toc(tStart);
 predTimeDT = tElapsed/25;
 testAcc = mean(yhat == ytest);
 fprintf('Test accuracy is %.4f\n', testAcc);
-fprintf('Average prediction time for one image is: %.2f\n', predTimeDT);
+fprintf('Average prediction time for one image is: %.2f sec\n', predTimeDT);
 yhat_test_DT = yhat;
 save('predictionDTwo.mat', 'yhat_test_DT', 'yhat_train_DT', 'predTimeDT');

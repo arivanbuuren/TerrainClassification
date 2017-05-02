@@ -7,8 +7,9 @@ clear;clc;
 %Load data
 load '../BestDataset/trainingData.mat'
 load '../BestDataset/testingData.mat'
-Xtrain = Xtrain(:,1:3);
-Xtest = Xtest(:,1:3);
+% Xtrain = Xtrain(:,1:3);
+% Xtest = Xtest(:,1:3);
+
 % Fit GMM on train data and compute accuracy 
 
 model = generativeGaussian(Xtrain, ytrain);
@@ -28,4 +29,4 @@ fprintf('Average prediction time for one image is: %.2f\n',predTimeGMM);
 %Save predictions and probabilities on training data
 pyx_train_GMM = pyx_train_GMM(:,1:7);
 pyx_test_GMM = pyx_test_GMM(:,1:7);
-save('predictionGMMwo.mat', 'yhat_train_GMM', 'pyx_train_GMM', 'yhat_test_GMM', 'pyx_test_GMM', 'predTimeGMM');
+save('predictionGMMwith.mat', 'yhat_train_GMM', 'pyx_train_GMM', 'yhat_test_GMM', 'pyx_test_GMM', 'predTimeGMM');
