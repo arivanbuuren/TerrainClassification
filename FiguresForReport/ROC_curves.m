@@ -2,13 +2,10 @@ clear;clc;
 load('../BestDataset/testingData.mat')
 load('../BestDataset/trainingData.mat')
 
-load('../GMMCode/predictionGMMwo.mat')
-load('../NeuralNet code/prediction_wo_NN.mat')
-load('../DTcode/predictionDTwo.mat')
-load('../RandomForest/predictionRFwo.mat')
-% load('../ModelAveraging/averagePredictions.mat')
-%Remove Ix and Iy from training data
-
+load('../GMMCode/predictionGMMwith.mat')
+load('../NeuralNet code/prediction_with_NN.mat')
+load('../DTcode/predictionDTwith.mat')
+load('../RandomForest/predictionRFwith.mat')
 
 [t,~] = size(Xtest);
 num_classes = 7;
@@ -35,11 +32,17 @@ for i = 1:t
 end
 
 figure(1)
-% plotroc( y_true, y_NN, 'Neural Net');
-% plotroc( y_true, y_GMM, 'GMM');
+p = plotroc( y_true, pyx_test_NN', 'Neural Net');
+% plotroc( y_true, pyx_test_GMM', 'GMM');
 % plotroc( y_true, y_RF, 'Random Forest');
-plotroc( y_true, y_DT, 'Decision Tree Net');
+% plotroc( y_true, y_DT, 'Decision Tree');
 
 axisdata = get(gca,'userdata')
 legend('Location', 'southeast')
 legend(axisdata.lines,'Grass', 'Road', 'Edge', 'Soil', 'Bushes', 'Tree', 'Post')
+% set(gca,'fontsize',29);
+% % set(gca,'XTick', [0 0.25 0.5 0.75 1])
+%  h_plot = get(gca,'Children');
+% % NameArray = {'LineStyle'};
+% % ValueArray = {'-','--',':','-.','^','*','.'}';
+% % set(p,NameArray,ValueArray)
