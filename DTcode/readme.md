@@ -1,1 +1,1 @@
-# Run script example_decisiontree.m
+# Run script example_decisionTree.m
