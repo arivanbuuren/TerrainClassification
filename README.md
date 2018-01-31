@@ -1,4 +1,3 @@
-# README #
 # Terrain and Obstacle Classification
 
 A MATLAB implementation of four supervised learning algorithms for terrain and obstacle classification. CPSC 540 Machine Learning course project. 
